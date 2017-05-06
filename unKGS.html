@@ -395,11 +395,18 @@ sap.ui.define([
 					var gicc = 0; // global chat counts
 					var giccNumGames = 0; // global games considered
 					var gG = {};
-					for(var jx=0; jx<aGames.length; jx++){
-					gG = aGames[jx];
+					
+					// for(var jx=0; jx<aGames.length; jx++){
+					// remove all games except 2
+					//--------------### TWO GAMES LIMIT ###--------------//
+					for(var i=aGames.length;i>=0;i--){ if(i>2)aGames.pop()}
+					//--------------### TWO GAMES LIMIT ###--------------//	
+
+					aGames.forEach(function(gG){
+					// gG = aGames[jx];
 
          			var grequest = gG.sgf_url;
-         			console.log("jx:" + jx + "//" + grequest + " " + gG.type);
+         			// console.log("jx:" + jx + "//" + grequest + " " + gG.type);
          			if( grequest != null && gG.type.toUpperCase() != "REVIEW" 
          								 && gG.type.toUpperCase() != "DEMONSTRATION" ){ // can be Free, Rated, Teaching, Rengo
          			console.log(grequest);
@@ -407,7 +414,7 @@ sap.ui.define([
          			// MessageToast.show(giccNumGames + " " + gG.type + " " + gG.sgf_url);
          			
          			//--------------### TWO GAMES LIMIT ###--------------//
-         			if( giccNumGames > 2 ) return false; 
+         			// if( giccNumGames > 2 ) return false; 
          			//--------------###     GAMES LIMIT ###--------------//
          			         			
 
@@ -436,7 +443,7 @@ sap.ui.define([
 			var re = new RegExp( sRecipient, "gi");
 			// var a2 = s2.toUpperCase().match(/FIGHTORDIE/g);
 			var a2 = s3.toUpperCase().match( re ); 
-			console.log(jx);
+			// console.log(jx);
 			gicc += a2.length;
 			gicc -= 1; // remove 1 for each game
 			// console.log("after finishing gicc is:"+ gicc);
@@ -444,8 +451,8 @@ sap.ui.define([
 			// decide whether to display "Friendly" icon
 						
 			talkative.setVisible(false);
-			var minGames = 2 * jx;
-			console.log(jx+' n. of chats is: '+ gicc);
+			// var minGames = 2 * jx;
+			// console.log(jx+' n. of chats is: '+ gicc);
 			console.log('n. of minimum chats is: '+ giccNumGames.toString());
 			if( gicc >= giccNumGames) talkative.setVisible(true);
 							
@@ -467,26 +474,26 @@ sap.ui.define([
 				}
 				var myEval = aOs[0].charAt(3) + aOs[0].charAt(4);
 				switch(myEval){
-					case "dd":case "qd":case "dq":case "qq":
+					case "dd":case "pd":case "dp":case "pp":
 						style44.setVisible(true);
 						// MessageToast.show("4-4");
 						break;
-					case "cc":case "rc":case "cr":case "rr":
+					case "cc":case "qc":case "cq":case "qq":
 						style33.setVisible(true);
 						// MessageToast.show("3-3");
 						break;
-					case "dc":case "qc":case "qr":case "dr":
-					case "cd":case "cq":case "rq":case "rd":
+					case "dc":case "pc":case "pq":case "dq":
+					case "cd":case "cp":case "qp":case "qd":
 						style43.setVisible(true);
 						// MessageToast.show("4-3");
 						break;
-					case "ec":case "pc":case "pr":case "er":
-					case "ce":case "cp":case "rp":case "re":
+					case "ec":case "oc":case "oq":case "eq":
+					case "ce":case "co":case "qo":case "qe":
 						style53.setVisible(true);
 						// MessageToast.show("5-3");
 						break;
-					case "ed":case "pd":case "pq":case "eq":
-					case "de":case "dp":case "qp":case "qe":
+					case "ed":case "od":case "op":case "ep":
+					case "de":case "do":case "po":case "pe":
 						style54.setVisible(true);
 						// MessageToast.show("5-4");
 						break;
@@ -495,26 +502,26 @@ sap.ui.define([
 				
 				var myEval = aOs[1].charAt(3) + aOs[1].charAt(4);
 				switch(myEval){
-					case "dd":case "qd":case "dq":case "qq":
+					case "dd":case "pd":case "dp":case "pp":
 						style44.setVisible(true);
 						// MessageToast.show("4-4");
 						break;
-					case "cc":case "rc":case "cr":case "rr":
+					case "cc":case "qc":case "cq":case "qq":
 						style33.setVisible(true);
 						// MessageToast.show("3-3");
 						break;
-					case "dc":case "qc":case "qr":case "dr":
-					case "cd":case "cq":case "rq":case "rd":
+					case "dc":case "pc":case "pq":case "dq":
+					case "cd":case "cp":case "qp":case "qd":
 						style43.setVisible(true);
 						// MessageToast.show("4-3");
 						break;
-					case "ec":case "pc":case "pr":case "er":
-					case "ce":case "cp":case "rp":case "re":
+					case "ec":case "oc":case "oq":case "eq":
+					case "ce":case "co":case "qo":case "qe":
 						style53.setVisible(true);
 						// MessageToast.show("5-3");
 						break;
-					case "ed":case "pd":case "pq":case "eq":
-					case "de":case "dp":case "qp":case "qe":
+					case "ed":case "od":case "op":case "ep":
+					case "de":case "do":case "po":case "pe":
 						style54.setVisible(true);
 						// MessageToast.show("5-4");
 						break;
@@ -531,7 +538,9 @@ sap.ui.define([
 
 					
     	} ; // if !Review
-	  };  // $.each aGames[]   
+	  // };  // $.each aGames[]   
+					}
+					);
 	        
       },
       
