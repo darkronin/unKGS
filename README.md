@@ -12,10 +12,9 @@ After loading up the OpenUI5 framework (about 500 KB), it presents a clean scree
 The query submits a request to the archives page via metaKGS, and drills down, parsing up to two games in order to extract some more information.
 
 ## Features
- - player's strength
- - average opponents' strength
- - _friendly_ indicator (greets/thanks after game)
- - Rengo indicator
+ - *player's strength* vs *_average_ opponents' strength*
+ - _friendly_ indicator (greets/thanks after game) ☺
+ - Rengo indicator 👥
  - _opening style_ indicators: what player usually plays in the first 4 moves. The most standard moves are recognized: 4-4, 4-3, 3-3, 5-3, 5-4
  - user's picture
 
