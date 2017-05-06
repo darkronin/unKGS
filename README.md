@@ -34,4 +34,4 @@ The query submits a request to the archives page via metaKGS, and drills down, p
  - [KGS Archives](https://www.gokgs.com/archives.jsp)
 
 ## Learn to play go
- - [The interactive way to go](playgo.to/iwtg/en/)
+ - [The interactive way to go](http://playgo.to/iwtg/en/)
