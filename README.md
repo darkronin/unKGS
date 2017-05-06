@@ -3,13 +3,8 @@ The un-conventional KGS app.
 
 Look up any active KGS player for receiving some aggregated information at your fingertips!
 
-A no-frills test web app, written leveraging OpenUI5 and metaKGS.
+A no-frills test web app, written leveraging OpenUI5 and metaKGS.  And YQL.
 
-
-## How it works
-
-After loading up the OpenUI5 framework (about 500 KB), it presents a clean screen with an input field to specify the username you wish to query.
-The query submits a request to the archives page via metaKGS, and drills down, parsing up to two games in order to extract some more information.
 
 ## Features
  - *player's strength* ☆☆☆☆☆☆☆☆ vs *_average_ opponents' strength* ☆☆☆☆☆☆☆☆
@@ -19,6 +14,12 @@ The query submits a request to the archives page via metaKGS, and drills down, p
  - user's picture
 
   
+## How it works
+
+After loading up the OpenUI5 framework (about 500 KB), it presents a clean screen with an input field to specify the username you wish to query.
+The query submits a request to the archives page via metaKGS, and drills down, parsing up to two games in order to extract some more information.
+
+
 ## External libraries used and references
 
 ### UI
