@@ -20,6 +20,11 @@ After loading up the OpenUI5 framework (about 500 KB), it presents a clean scree
 The query submits a request to the archives page via metaKGS, and drills down, parsing up to two games in order to extract some more information.
 
 
+## How to install
+
+Just copy the main application file (unKGS.html) wherever (pc/mobile device), along as the img/ folder and the files therein contained, in the same folder as the main application file.  This is a pure HTML5 app so it should run anywhere.
+
+
 ## External libraries used and references
 
 ### UI
