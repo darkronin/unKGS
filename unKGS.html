@@ -359,6 +359,7 @@ sap.ui.define([
            			if( avgOppRank < 0 ) sOppRank = -1.0 * sOppRank + "d";
            			if( avgOppRank > 0 ) sOppRank = sOppRank + "k";
 					if( sOppRank == '0d') sOppRank = '1k';
+	      				if( sOppRank == '0k') sOppRank = '1d';
            			inModel.setProperty("/opponents/rank", sOppRank);
            			
            			if( avgOppRank < -6){
