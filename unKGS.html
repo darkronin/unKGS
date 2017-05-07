@@ -453,8 +453,9 @@ sap.ui.define([
 			talkative.setVisible(false);
 			// var minGames = 2 * jx;
 			// console.log(jx+' n. of chats is: '+ gicc);
-			console.log('n. of minimum chats is: '+ giccNumGames.toString());
-			if( gicc >= giccNumGames) talkative.setVisible(true);
+			var minChats = 2 * giccNumGames;
+			console.log('n. of minimum chats is: '+ minChats.toString());
+			if( gicc >= minChats ) talkative.setVisible(true);
 							
 			//----------------------------------------------------------//
 			// opening style	
