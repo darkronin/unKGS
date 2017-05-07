@@ -25,6 +25,16 @@ The query submits a request to the archives page via metaKGS, and drills down, p
 Just copy the main application file (unKGS.html) wherever (pc/mobile device), along as the img/ folder and the files therein contained, in the same folder as the main application file.  This is a pure HTML5 app so it should run anywhere.
 
 
+How to download the main application file unKGS.html from GitHub:
+1. Go to the unKGS.html file
+1. Click it to view the contents within the GitHub UI.
+1. In the top right, right click the Raw button.
+4. Save as
+
+Next, create an "img" folder.
+
+Finally, download the images in the img folder.
+
 ## External libraries used and references
 
 ### UI
