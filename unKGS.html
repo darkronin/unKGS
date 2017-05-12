@@ -1,688 +1,852 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>un-KGS</title>
-	<style>
-
-.img1 {
-  background: linear-gradient(
-  	rgba(255,255,255,1),
-  	rgba(255,255,255,.8)),
-	url('img/background.jpg');
-	background-size: cover;
-}
-
-.reverse {
-  -ms-transform: rotateX(360deg); 
-  -webkit-transform: rotate(360deg); 
-  transform: rotate(360deg);
-  -ms-transition:0.8s all;
-  -webkit-transition:0.8s all;
-  transition:0.8s all;
-}
-
-.hover {
-  -ms-transform: rotate(0deg); 
-  -webkit-transform: rotate(0deg); 
-  transform: rotate(0deg);
-  -ms-transition:0.8s all;
-  -webkit-transition:0.8s all;
-  transition:0.8s all;
-}	
-	</style>
-	
-	<script 
-		src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
-		id="sap-ui-bootstrap"
-		data-sap-ui-theme="sap_bluecrystal"
-        data-sap-ui-libs="sap.m"
-        data-sap-ui-compatVersion="edge"
-        data-sap-ui-preload="no"
-        data-sap-ui-resourceroots='{
-            "sap.ui.demo.wt": "./"
-        	}' >
-	</script>
-					
-   
-   <script id="view1" type="sapui5/xmlview">
-<mvc:View
-   controllerName="sap.ui.demo.wt.controller"
-   xmlns="sap.m"
-   xmlns:mvc="sap.ui.core.mvc"
-   xmlns:core="sap.ui.core" 
-   xmlns:layout="sap.ui.commons.layout"    
-   displayBlock="true">
-   <App>
-      <pages>
-         <Page title="{i18n>un-KGS}" class="img1">
-            <content>
-            
-<!-- ###################################################################### -->
-            
-               <Panel
-                  headerText="{i18n>player}" class="sapUiResponsiveMargin" width="auto">
-                  <content>
-
-   					<Input  value="{/recipient/username}"    	      
-   	      					valueLiveUpdate="true"
-   	      					placeholder="player"
-   	      					width="33%"
-   	      					submit="onGo"/>
-   					<Button
-      						text="{i18n>Look it up!}" 
-      						press="onGo"
-      						class="sapUiSmallMarginEnd"/>
-
- 			  	
- 			  	  </content></Panel>
- 			  	  
-<!-- ###################################################################### -->
- 			  	  
- 			  <!-- PLAYER INFO --> 
- 			  
- 			   <Panel
- 			  	  headerText="{i18n>info}" class="sapUiResponsiveMargin" width="auto"> 
- 			  	  <content>
-
- 			  	 	<Slider id="slider" value="100" liveChange="onSliderMoved" visible="false"></Slider>  			   			  
- 			  		<ProgressIndicator  percentValue="30" displayValue="to be implemented" showValue="true" state="None" visible="false"/>
- 			  
- 	 			 
-			            	
- 	 		<layout:MatrixLayout layoutFixed="false" columns="1" width="100%">
- 	 			<layout:MatrixLayoutRow>
- 	 			    <layout:cells>
-                        <layout:MatrixLayoutCell>
-                        
-<!-- -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ -->     
-			  <!-- STARS  FOR RATING -->                         
- 			  <RatingIndicator id="rating" 
- 			      class="sapUiSmallMargin rotatey" 
- 			      value="0" maxValue="8"
- 			      visualMode="Full" 
- 			      enabled="false" 
- 			      tooltip="Player rank: {/recipient/rank}" /> 
- 			  
-			  <Text class="text345"  text="{/recipient/rank}"/>
-			  
-			  <Text class="sapUiSmallMargin text345"  text="VS"/>			  
-
-			  <!-- STARS FOR OPPONENTS STRENGTH --> 
- 			  <RatingIndicator id="ratingOpp" 
-				  class="sapUiSmallMargin rotatey" 
- 			      maxValue="8"
- 			      value="0"
- 			      visualMode="Full" 
- 			      enabled="false"
- 			      tooltip="Opponents average rank: {/opponents/rank}" /> 
- 			  
-			  <Text class="text345"  text="{/opponents/rank}"/>			  
-
- 	 					</layout:MatrixLayoutCell>
-                    </layout:cells>  
- 	 			</layout:MatrixLayoutRow>
- 	 			
- 	 			<layout:MatrixLayoutRow>
- 	 				<layout:cells>
-                        <layout:MatrixLayoutCell>
-                        
-                        
-<!-- -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ -->                 	 
-				<!-- IMAGE IF HE CHATS  -->
-
- 			  	<Image id="talkative" 
- 			  		class="sapUiMediumMargin xNoMarginBottom xxcircle " 
- 			  		width='4.5rem' 
- 			  		src="img/smile3.png" 
- 			  		tooltip="Player chats"
- 			  		visible="false"/> 			  	
- 			  	
-				<core:Icon
-					id="rengo"
-	            	src="sap-icon://group"  
-    	        	size="4.5rem"
-        	    	color="#006caa"
-            		class="sapUiMediumMargin xYesMarginBottom xxcircle2 "
-            		visible="false"
-            		tooltip="Rengo player"/>  
-
-
- 	 					</layout:MatrixLayoutCell>
-                    </layout:cells>  
- 	 			</layout:MatrixLayoutRow> 	 			
- 	 			<layout:MatrixLayoutRow>
- 	 				<layout:cells>
-                        <layout:MatrixLayoutCell>
-
-<!-- -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ -->   
-			 
-			 <!-- IMAGE WITH MOST USED CORNER STONES (standard) -->
-
-			 <Image id="style44" class="sapUiSmallMargin" src="img/4-4b.png" visible="false" width="6rem"/>           	
-			 <Image id="style43" class="sapUiSmallMargin" src="img/4-3b.png" visible="false" width="6rem"/>           	
-			 <Image id="style33" class="sapUiSmallMargin" src="img/3-3b.png" visible="false" width="6rem"/> 
-			 <Image id="style53" class="sapUiSmallMargin" src="img/5-3b.png" visible="false" width="6rem"/>           	
-			 <Image id="style54" class="sapUiSmallMargin" src="img/5-4b.png" visible="false" width="6rem"/>    		
- 	 						
- 	 			 			  	
- 	 					</layout:MatrixLayoutCell>
-                    </layout:cells>  
- 	 			</layout:MatrixLayoutRow> 	 
-
- 	 			<layout:MatrixLayoutRow>
- 	 			    <layout:cells>
-                        <layout:MatrixLayoutCell>
-
-<!-- -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/ -->     
-			 
-			 <!-- AVATAR (why not? ) -->                 
-			 <Image id="avatar" 	
-			 		class="sapUiSmallMargin" 
-			 		src="" 
-			 		visible="false"/>
-			 	
- 	 					</layout:MatrixLayoutCell>
-                    </layout:cells>  
- 	 			</layout:MatrixLayoutRow> 	 
- 	 			 	 			
- 	 		</layout:MatrixLayout>
- 	 		
- 			  </content> 
- 			  </Panel>
- 		
-<!-- ###################################################################### -->
-
- 			  
- 	</content></Page> 
- </pages> 
-</App> 
-</mvc:View>
-   
-   </script> <!-- id="view1" -->
-          
-   <script>
-sap.ui.define([
-   "sap/ui/core/mvc/Controller",
-   "sap/m/MessageToast",
-   "sap/ui/model/json/JSONModel",
-   "sap/ui/model/resource/ResourceModel"
-], function (Controller, MessageToast, JSONModel, ResourceModel) {
-   "use strict";
-   return Controller.extend("sap.ui.demo.wt.controller", {
-   
-      onInit : function () {
-         // set data model on view
-         var oData = {
-            recipient : {
-               username : "",
-               rank : ""
-            },
-            opponents : {
-            	rank : ""
-            }
-         };
-         var oModel = new JSONModel(oData);
-         this.getView().setModel(oModel);
-     // set i18n model on view
-         var i18nModel = new ResourceModel({
-            bundleName: "sap.ui.demo.wt.i18n.i18n"
-         });
-         this.getView().setModel(i18nModel, "i18n");    
-         
-      },
-    onAfterRendering : function () {
-      $(".xxcircle").mouseover(function(){
-  		$(".xxcircle").removeClass("reverse").addClass("hover");
-	}).mouseout(function(){  $(".xxcircle").removeClass("hover").addClass("reverse"); });
-	
-      $(".xxcircle2").mouseover(function(){
-  		$(".xxcircle2").removeClass("reverse").addClass("hover");
-	}).mouseout(function(){  $(".xxcircle2").removeClass("hover").addClass("reverse"); });     
-	     
-    },    
-      normalizeRank: function ( iRank ) {
-        var oRank = 0;
-        if( iRank != "" && iRank != null){
-          var mRank = iRank.replace('?', '');
-          if( iRank.match('k') ) {
-            oRank = parseInt(iRank);
-          } else if( iRank.match('d') ) {
-          	oRank = -1 * parseInt(iRank);
-          } else if( iRank.match('p') ) {          
-          	oRank = -10;
-          } else {
-          	// rank undefined?
-          }
-        }
-        return oRank;
-      },
-      
-      mainFunction : function( l, rank, aGames,
-                 				sRecipient, selfView, otherView, sliderView,
-           				style44, style43, style33, style53, style54,
-           				talkative, rengo, avatar, inModel,
-           				iNormalizeRank) {
-      
-					for( var ig=0; ig<aGames.length; ig++){
-           				// only consider 1vs1 games
-           				if( aGames[ig].black.length > 1 ) continue;
-           				if( aGames[ig].type.toUpperCase() == "DEMONSTRATION" ) continue;
-           				if( aGames[ig].type.toUpperCase() == "REVIEW" ) continue;
-           				
-		   				rank = aGames[ig].white[0].rank;
-           				if( aGames[ig].black[0].name.toUpperCase() == sRecipient.toUpperCase() )rank = aGames[ig].black[0].rank;
-						break;
-           				
-           				
-           			} // for( var ig=0; ig<aGames.length; ig++)
-        		 
-           			// show rank as Toast 
-           			// MessageToast.show( rank );
-           			// set rank in model
-           			inModel.setProperty("/recipient/rank", rank);
-           			
-					// show rank as RatingIndicator           			
-           			var rank_n = rank.replace('?', ''); // normalized rank: remove ?...
-           			
-           			switch( rank_n ) {
-           			  case "20k": case "19k":
-           			  case "18k": case "17k":
-           			  case "16k":
-           			  selfView.setValue(1);
-           			  break;
-           			  case "15k": case "14k":
-           			  case "13k": case "12k":
-           			  case "11k":
-           			  selfView.setValue(2);
-           			  break;		
-           			  case "10k": case "9k":
-           			  case "8k": case "7k":
-           			  case "6k":
-           			  selfView.setValue(3);
-           			  break;
-           			  case "5k": case "4k":
-           			  case "3k": case "2k":           			  
-           			  selfView.setValue(4);
-           			  break;
-           			  case "1k": case "1d":
-           			  case "2d":
-           			  selfView.setValue(5);
-           			  break;
-           			  case "3d": case "4d":
-           			  selfView.setValue(6);
-           			  break;
-           			  case "5d": case "6d":
-           			  selfView.setValue(7);
-           			  break;
-           			  case "7d": case "8d":
-           			  case "9d":
-           			  case "1p": case "2p":
-           			  case "3p": case "4p":
-           			  case "5p": case "6p":
-           			  case "7p": case "8p":
-           			  case "9p":
-           			  selfView.setValue(8);
-           			  break;    
-           			         			  
-           			  default:
-           			  selfView.setValue(0);  
-           			  sliderView.setVisible(false);         			  
-           			  break;
-           			
-           			
-           			}  
-           			
-           			// opponents average rank
-           			var oppRank = "";
-           			var cumRank = 0;
-           			var cumCount = 0;
-           			var avgOppRank = 0;
-           			
-           			for( var ig=0; ig<aGames.length; ig++){
-           				// only consider 1vs1 games
-           				if( aGames[ig].black.length > 1 ) continue;
-           				if( aGames[ig].type.toUpperCase() == "DEMONSTRATION" ) continue;
-           				if( aGames[ig].type.toUpperCase() == "REVIEW" ) continue;
-           				// understand player colour
-           			    oppRank = aGames[ig].black[0].rank;
-           				if( aGames[ig].black[0].name.toUpperCase() == sRecipient.toUpperCase() ) oppRank = aGames[ig].white[0].rank;
-           				
-           				cumRank += iNormalizeRank( oppRank );
-           				cumCount += 1;
-           				
-           			}
-           			if( cumCount ) avgOppRank = cumRank * 1.0 / cumCount;
-           			console.log( 'average opponent rank:' + avgOppRank );
-           			
-           			var sOppRank = "";
-           			sOppRank = parseInt(avgOppRank);
-           			if( avgOppRank < 0 ) sOppRank = -1.0 * sOppRank + "d";
-           			if( avgOppRank > 0 ) sOppRank = sOppRank + "k";
-					if( sOppRank == '0d') sOppRank = '1k';
-	      				if( sOppRank == '0k') sOppRank = '1d';
-           			inModel.setProperty("/opponents/rank", sOppRank);
-           			
-           			if( avgOppRank < -6){
-           				otherView.setValue(8);
-					} else if( avgOppRank < -4) {
-           				otherView.setValue(7);
-					} else if( avgOppRank < -2) {
-           				otherView.setValue(6);
-					} else if( avgOppRank < 1) {
-           				otherView.setValue(5);
-					} else if( avgOppRank < 5) {
-           				otherView.setValue(4);
-					} else if( avgOppRank < 10) {
-           				otherView.setValue(3);
-					} else if( avgOppRank < 15) {        
-           				otherView.setValue(2);
-					} else if( avgOppRank < 20) { 			
-           				otherView.setValue(1);           					           				
-					} else {           				
-           				otherView.setValue(0);
-           			}
-           			
-           			
-           			// rengo icon
-           			for( var ig=0; ig<aGames.length; ig++){
-           				if( aGames[ig].type.toUpperCase() == "RENGO" ){
-           					rengo.setVisible(true);
-           					break;
-           				}
-           			}
-
-
-           			// talkative icon 
-					var gicc = 0; // global chat counts
-					var giccNumGames = 0; // global games considered
-					var gG = {};
-					
-					// for(var jx=0; jx<aGames.length; jx++){
-					// remove all games except 2
-					//--------------### TWO GAMES LIMIT ###--------------//
-					for(var i=aGames.length;i>=0;i--){ if(i>2)aGames.pop()}
-					//--------------### TWO GAMES LIMIT ###--------------//	
-
-					aGames.forEach(function(gG){
-					// gG = aGames[jx];
-
-         			var grequest = gG.sgf_url;
-         			// console.log("jx:" + jx + "//" + grequest + " " + gG.type);
-         			if( grequest != null && gG.type.toUpperCase() != "REVIEW" 
-         								 && gG.type.toUpperCase() != "DEMONSTRATION" ){ // can be Free, Rated, Teaching, Rengo
-         			console.log(grequest);
-         			giccNumGames += 1;
-         			// MessageToast.show(giccNumGames + " " + gG.type + " " + gG.sgf_url);
-         			
-         			//--------------### TWO GAMES LIMIT ###--------------//
-         			// if( giccNumGames > 2 ) return false; 
-         			//--------------###     GAMES LIMIT ###--------------//
-         			         			
-
-      // jQuery.get(
-    
-      // call YQL
-      $.getJSON("http://query.yahooapis.com/v1/public/yql?"+
-                "q=select%20*%20from%20html%20where%20url%3D%22"+
-                encodeURIComponent(grequest)+
-                "%22&format=xml'&callback=?",
-        // this function gets the data from the successful JSON-P call
-        function(data){
-          // if there is data, filter it and render it out
-          if(data.results[0]){
-            var l2 = data.results[0];
-
-			var icc = -1; // count of chats! (one will be player name)
-
-			// OUTPUT example:
-			// ["[1]", "[4]", "[UTF-8]", "[CGoban:3]", "[2]", "[Japanese]", "[19]", "[0.50]", 
-			// "[900]", "[1x10 byo-yomi]", "[tona]", "[alobar]", "[7k]", "[8k]", "[2017-04-24]", 
-			// "[The KGS Go Server at http://www.gokgs.com/]", "[alobar [8k]", "[7k]", "[W+Resign]",
-			//  "[dd]", "							 
-
-			var s3 = l2.replace(/\[...\]/g, '-').replace(/\[..\]/g, '-').replace(/\[.\]/g, '-');
-			var re = new RegExp( sRecipient, "gi");
-			// var a2 = s2.toUpperCase().match(/FIGHTORDIE/g);
-			var a2 = s3.toUpperCase().match( re ); 
-			// console.log(jx);
-			gicc += a2.length;
-			gicc -= 1; // remove 1 for each game
-			// console.log("after finishing gicc is:"+ gicc);
-
-			// decide whether to display "Friendly" icon
-						
-			talkative.setVisible(false);
-			// var minGames = 2 * jx;
-			// console.log(jx+' n. of chats is: '+ gicc);
-			var minChats = 2 * giccNumGames;
-			console.log('n. of minimum chats is: '+ minChats.toString());
-			if( gicc >= minChats ) talkative.setVisible(true);
-							
-			//----------------------------------------------------------//
-			// opening style	
-			
-			if( gG.board_size == 19 && gG.handicap == null){
-				/// var aOs = l2.match(/;[BW].\w\w\]/g);
-				// consider only positions 0..3 (first 4 moves)
-				// console.log(aOs[0]+aOs[1]+aOs[2]+aOs[3]);
-				var aOs = [];
-				// note: move number depend on player (maybe read it from PW[] / PB[] since i have the SGF here?)
-				if( gG.black[0].name.toUpperCase() == sRecipient.toUpperCase() ){
-				 	// player black
-				 	aOs = l2.match(/;B.\w\w\]/g);
-				} else {
-				 // player white
-				 	aOs = l2.match(/;W.\w\w\]/g);
-				}
-				var myEval = aOs[0].charAt(3) + aOs[0].charAt(4);
-				switch(myEval){
-					case "dd":case "pd":case "dp":case "pp":
-						style44.setVisible(true);
-						// MessageToast.show("4-4");
-						break;
-					case "cc":case "qc":case "cq":case "qq":
-						style33.setVisible(true);
-						// MessageToast.show("3-3");
-						break;
-					case "dc":case "pc":case "pq":case "dq":
-					case "cd":case "cp":case "qp":case "qd":
-						style43.setVisible(true);
-						// MessageToast.show("4-3");
-						break;
-					case "ec":case "oc":case "oq":case "eq":
-					case "ce":case "co":case "qo":case "qe":
-						style53.setVisible(true);
-						// MessageToast.show("5-3");
-						break;
-					case "ed":case "od":case "op":case "ep":
-					case "de":case "do":case "po":case "pe":
-						style54.setVisible(true);
-						// MessageToast.show("5-4");
-						break;
-					default:
-				}
-				
-				var myEval = aOs[1].charAt(3) + aOs[1].charAt(4);
-				switch(myEval){
-					case "dd":case "pd":case "dp":case "pp":
-						style44.setVisible(true);
-						// MessageToast.show("4-4");
-						break;
-					case "cc":case "qc":case "cq":case "qq":
-						style33.setVisible(true);
-						// MessageToast.show("3-3");
-						break;
-					case "dc":case "pc":case "pq":case "dq":
-					case "cd":case "cp":case "qp":case "qd":
-						style43.setVisible(true);
-						// MessageToast.show("4-3");
-						break;
-					case "ec":case "oc":case "oq":case "eq":
-					case "ce":case "co":case "qo":case "qe":
-						style53.setVisible(true);
-						// MessageToast.show("5-3");
-						break;
-					case "ed":case "od":case "op":case "ep":
-					case "de":case "do":case "po":case "pe":
-						style54.setVisible(true);
-						// MessageToast.show("5-4");
-						break;
-					default:
-				}					
-			 }            
-          // otherwise tell the world that something went wrong
-          } else {
-            var errormsg = 'Error: cant load the game.';
-            MessageToast.show(errormsg);
-          }
-        }
-      );
-
-					
-    	} ; // if !Review
-	  // };  // $.each aGames[]   
-					}
-					);
-	        
-      },
-      
-      onGo : function () {
-
-		 // read user from input field
-         var oBundle = this.getView().getModel("i18n").getResourceBundle();
-         var sRecipient = this.getView().getModel().getProperty("/recipient/username");
-
-         
-         // define proxies for jQuery.get call, and set defaults
-         var selfView = this.getView().byId("rating");
-         selfView.setValue(0);
-         
-         var otherView = this.getView().byId("ratingOpp");
-         otherView.setValue(0);
-         
-         var sliderView = this.getView().byId("slider");
-         var style44 = this.getView().byId("style44");
-         var style43 = this.getView().byId("style43");
-         var style33 = this.getView().byId("style33");
-         var style53 = this.getView().byId("style53");
-         var style54 = this.getView().byId("style54");
-		 style44.setDensityAware(false);
-		 style43.setDensityAware(false);
-		 style33.setDensityAware(false);
-		 style53.setDensityAware(false);
-		 style54.setDensityAware(false);
- 		 style44.setVisible(false);
-		 style43.setVisible(false);
-		 style33.setVisible(false);
-		 style53.setVisible(false);
-		 style54.setVisible(false);
+	<head>
+		<meta charset="utf-8">
+		<title>un-KGS</title>
 		
-         var talkative = this.getView().byId("talkative");
-         talkative.setVisible(false);
-         var rengo = this.getView().byId("rengo");
-         rengo.setVisible(false);         
-         var avatar = this.getView().byId("avatar");
-         avatar.setVisible(false);         
-         
-         var inModel = this.getView().getModel();
-         inModel.setProperty("/recipient/rank", "");
-         inModel.setProperty("/opponents/rank", "");
-         
-         var iNormalizeRank = this.normalizeRank;
+		<style>
 
-         // exit if null query
-	 	 if( sRecipient == "" ) return false;
+			.devider{
+				background: #009de0;
+				width: 100%;
+				height: 1pt;
+			}
+
+			.img1 {
+				
+				background: linear-gradient(
+  				rgba(255,255,255,1),
+  				rgba(255,255,255,.8)),
+				url('img/background.jpg');
+				background-size: cover;				
+			}
+			
+			.rating {
+				margin-left: 2rem !important;
+				font-size: 2rem !important;
+				color: gray !important;
+			}
+			
+			.reverse {
+				-ms-transform: rotateX(360deg); 
+				-webkit-transform: rotate(360deg); 
+				transform: rotate(360deg);
+				-ms-transition:0.8s all;
+				-webkit-transition:0.8s all;
+				transition:0.8s all;
+				}
+			.hover {
+				-ms-transform: rotate(0deg); 
+				-webkit-transform: rotate(0deg); 
+				transform: rotate(0deg);
+				-ms-transition:0.8s all;
+				-webkit-transition:0.8s all;
+				transition:0.8s all;
+				}
+		</style>
 	
-		 avatar.setVisible(true);
-		 avatar.setDensityAware(false);
-		 avatar.setSrc("http://goserver.gokgs.com/avatars/"+sRecipient+".jpg");
-
-		 // define request
-         var krequest = 'https://metakgs.org/api/archives/' + sRecipient;         
-         
-         var mainFunction2 = this.mainFunction;
-         
-         jQuery.get(
-         	krequest,
-         	{},
-         	function(l){ 
-         		  // console.log(l);
-         		  var html = "";
-         	
-         		  // console.log(l);
-         		  // parse rank from response (l)	  
-         	  	 var rank = '?';
-         	  	 var aGames = l.content.games;
-        		 if( aGames.length > 0 ){
-           			
-           			mainFunction2(l, rank, aGames, 
-           				sRecipient, selfView, otherView, sliderView,
-           				style44, style43, style33, style53, style54,
-           				talkative, rengo, avatar, inModel, iNormalizeRank);    					           			           			
- 			        		  
-           		  }  else  {  // if( aGames.length > 0 ){
-           		  	// SCAN PREVIOUS MONTH, SAME LOGIC (mainFunction)
-           		  	
-           		  	MessageToast.show("no games in last month, scanning previous");
-				    
-				     console.log(l.link.prev);
-				     krequest = l.link.prev;
-				    
-				    jQuery.get(
-             	    	krequest,
-             	    	{},
-             	    	function(l){ 
-             	    		  
-             	    		 // console.log(l);
-             	    		  var html = "";
-             	    	
-             	    		  // parse rank from response (l)	  
-             	    	  	 var rank = '?';
-             	    	  	 var aGames = l.content.games;
-        					 if( aGames.length > 0 ){
-             	      			
-             	      			mainFunction2(l, rank, aGames, 
-             	      				sRecipient, selfView, otherView, sliderView,
-             	      				style44, style43, style33, style53, style54,
-             	      				talkative, rengo, avatar, inModel, iNormalizeRank);    					             	      			             	      			
- 			        		  
-             	      		  }  else  {  // if( aGames.length > 0 ){
-				    			MessageToast.show("no games in last and next-to-last month");
-				  			  }	 // if( aGames.length > 0 ){
-
-             	    		  
-             	    		},
-             	    	'json'
-             	    ).fail( function(e){ MessageToast.show("Oops! Some error occurred");} );				    
-             	    
-				  } // if( aGames.length > 0 ){
-
-         		  
-         		},
-         	'json'
-         ).fail( function(e){ MessageToast.show("Oops! Some error occurred");} );
-
-      }
-            
-   });
-});
+		<script 
+			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+			id="sap-ui-bootstrap"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-libs="sap.m"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-preload="no"
+			data-sap-ui-resourceroots='{ "sap.ui.demo.wt": "./"	}' >
+		</script>
    
- 
-                    /*** THIS IS THE "APPLICATION" CODE ***/
- 
-                    // instantiate the View
-                    var myView = sap.ui.xmlview({viewContent:jQuery('#view1').html()}); // accessing the HTML inside the script tag above
- 
-                    // put the View onto the screen
-                    myView.placeAt('content');
- 
-   </script>
+		<script id="view1" type="sapui5/xmlview">
+			<mvc:View
+				controllerName="sap.ui.demo.wt.controller"
+				xmlns="sap.m"
+				xmlns:mvc="sap.ui.core.mvc"
+				xmlns:core="sap.ui.core"
+				xmlns:layout="sap.ui.commons.layout"
+				displayBlock="true">
 
- 	
-  </head>
 
-   <body class="sapUiBody" id="content">  
+				<App>
+					<pages>
+						<Page title="{i18n>un-KGS}" class="img1">
+							<content>
+
+								<!-- ###################################################################### -->
+								<!--<Panel headerText="{i18n>player}" class="sapUiResponsiveMargin" width="auto"> -->
+									<Panel class="sapUiResponsiveMargin" width="auto">
+										<content>
+											<Input
+												value="{/recipient/username}"
+												valueLiveUpdate="true"
+												placeholder="KGS nickname"
+												width="50%"
+												submit="onGo"/>
+
+											<Button
+												text="{i18n>Look it up!}"
+												press="onGo"
+												class="sapUiSmallMarginEnd"/>
+
+							
+										</content>
+
+									</Panel>
+
+								<!-- ###################################################################### -->
+
+								<!-- ############################# PLAYER INFO ############################ -->
+								<!--<Panel headerText="{i18n>info}" class="sapUiResponsiveMargin" width="auto">-->
+									<Panel id = "infopanel" class="sapUiResponsiveMargin" width="auto" visible="false">
+										<content>
+											<Slider
+												id="slider"
+												value="100"
+												liveChange="onSliderMoved"
+												visible="false">
+											</Slider>
+
+											<ProgressIndicator
+												percentValue="30"
+												displayValue="to be implemented"
+												showValue="true"
+												state="None"
+												visible="false"/>
+
+											<layout:MatrixLayout layoutFixed="false" columns="1" width="100%">
+
+
+												<!-- -/-/-/-/-/-/-/-/-/-/Avatar/-/-/-/-/-/-/-/-/-/-/ -->
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text 
+																	class="text345"
+																	text="Avatar"
+																	/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+															<!-- AVATAR (why not? ) -->
+																<Image
+																	id="avatar"
+																	class="sapUiSmallMargin"
+																	src=""
+																	visible="false"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text class="devider"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+
+
+
+												<!-- -/-/-/-/-/-/-/-/-/-/Player strength vs average opponent's strength/-/-/-/-/-/-/-/-/-/-/ -->
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text 
+																	class="text345"
+																	text="Player strength vs average opponent's strength"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+															<!-- STARS  FOR RATING -->
+																<RatingIndicator
+																	id="rating"
+																	class="sapUiSmallMargin rotatey"
+																	value="0" maxValue="8"
+																	visualMode="Full"
+																	enabled="false"
+																	tooltip="Player rank: {/recipient/rank}" />
+																<Text
+																	class="text345"
+																	text="{/recipient/rank}"/>
+																<Text
+																	class="sapUiSmallMargin text345"
+																	text="VS"/>
+															<!-- STARS FOR OPPONENTS STRENGTH -->
+																<RatingIndicator
+																	id="ratingOpp"
+																	class="sapUiSmallMargin rotatey"
+																	maxValue="8"
+																	value="0"
+																	visualMode="Full"
+																	enabled="false"
+																	tooltip="Opponents average rank: {/opponents/rank}" />
+																<Text
+																	class="text345"
+																	text="{/opponents/rank}"/>
+															<!-- WINRATE -->
+																<Text
+																	id="winrate"
+																	class="rating"
+																	text="0%"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text class="devider"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+
+
+												<!-- -/-/-/-/-/-/-/-/-/-/Escape indicator/-/-/-/-/-/-/-/-/-/-/ -->
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text
+																	class="text345"
+																	text="Escape indicator"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+															<!-- Escaper if 5 or more escaped games  -->
+																<Image
+																	id="tal"
+																	class="sap"
+																	width='4.5rem'
+																	src="img/nopolite.png"
+																	tooltip="Escape indicator"
+																	visible="false"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text class="devider"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+
+
+												<!-- -/-/-/-/-/-/-/-/-/-/Communicative indicator/-/-/-/-/-/-/-/-/-/-/ -->
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text 
+																	class="text345"
+																	text="Communicative indicator"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+															<!-- IMAGE IF HE CHATS  -->
+																<Image
+																	id="talkative"
+																	class="sapUiMediumMargin xNoMarginBottom xxcircle "
+																	width='4.5rem'
+																	src="img/smile3.png"
+																	tooltip="Player chats"
+																	visible="false"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text class="devider"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+
+
+												<!-- -/-/-/-/-/-/-/-/-/-/Rengo indicator/-/-/-/-/-/-/-/-/-/-/ -->
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text 
+																	class="text345"
+																	text="Rengo indicator"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<core:Icon
+																	id="rengo"
+																	src="sap-icon://group"
+																	size="4.5rem"
+																	color="#006caa"
+																	class="sapUiMediumMargin xYesMarginBottom xxcircle2 "
+																	visible="false"
+																	tooltip="Rengo player"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text class="devider"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+
+
+												<!-- -/-/-/-/-/-/-/-/-/-/Opening style indicator/-/-/-/-/-/-/-/-/-/-/ -->
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+																<Text 
+																	class="text345"
+																	text="Opening style indicators: what player usually plays in the first 4 moves."/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+															<!-- IMAGE WITH MOST USED CORNER STONES (standard) -->
+																<Image id="style44" class="sapUiSmallMargin" src="img/4-4b.png" visible="false" width="6rem"/>
+																<Image id="style43" class="sapUiSmallMargin" src="img/4-3b.png" visible="false" width="6rem"/>
+																<Image id="style33" class="sapUiSmallMargin" src="img/3-3b.png" visible="false" width="6rem"/>
+																<Image id="style53" class="sapUiSmallMargin" src="img/5-3b.png" visible="false" width="6rem"/>
+																<Image id="style54" class="sapUiSmallMargin" src="img/5-4b.png" visible="false" width="6rem"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+
+											</layout:MatrixLayout>
+										</content>
+									</Panel>
+								<!-- ###################################################################### -->
+
+							</content>
+						</Page>
+					</pages>
+				</App>
+			</mvc:View>
+		</script> <!-- id="view1" -->
+
+		<script>
+			sap.ui.define([
+			    "sap/ui/core/mvc/Controller",
+				"sap/m/MessageToast",
+				"sap/ui/model/json/JSONModel",
+				"sap/ui/model/resource/ResourceModel"
+			], function (Controller, MessageToast, JSONModel, ResourceModel) {
+			    "use strict";
+			    return Controller.extend("sap.ui.demo.wt.controller", {
+
+			        onInit : function () {
+			            // set data model on view
+						var oData = {
+						    recipient : {
+						        username : "",
+								rank : ""
+						    },
+							opponents : {
+						        rank : ""
+						    }
+						};
+
+						var oModel = new JSONModel(oData);
+						this.getView().setModel(oModel);
+
+						// set i18n model on view
+						var i18nModel = new ResourceModel({
+						    bundleName: "sap.ui.demo.wt.i18n.i18n"
+						});
+						this.getView().setModel(i18nModel, "i18n");
+			        },
+
+					onAfterRendering : function () {
+			            $(".xxcircle")
+							.mouseover(function(){$(".xxcircle").removeClass("reverse").addClass("hover");})
+							.mouseout(function(){$(".xxcircle").removeClass("hover").addClass("reverse");});
+
+			            $(".xxcircle2")
+							.mouseover(function(){$(".xxcircle2").removeClass("reverse").addClass("hover");})
+							.mouseout(function(){  $(".xxcircle2").removeClass("hover").addClass("reverse"); });
+			        },
+
+					normalizeRank: function ( iRank ) {
+			            var oRank = 0;
+			            if( iRank != "" && iRank != null){
+			                var mRank = iRank.replace('?', '');
+			                if( iRank.match('k') ) {
+			                    oRank = parseInt(iRank);
+			                } else if( iRank.match('d') ) {
+			                    oRank = -1 * parseInt(iRank);
+			                } else if( iRank.match('p') ) {
+			                    oRank = -10;
+			                } else {
+                                // rank undefined?
+							}
+			            }
+			            return oRank;
+			        },
+
+					mainFunction : function( l, rank, aGames, sRecipient, selfView, otherView, sliderView, style44, style43,
+											 style33, style53, style54, talkative, rengo, avatar, inModel, iNormalizeRank, escaperView) {
+			            for( var ig=0; ig<aGames.length; ig++){
+                            // only consider 1vs1 games
+			                if( aGames[ig].black.length > 1 ) continue;
+			                if( aGames[ig].type.toUpperCase() == "DEMONSTRATION" ) continue;
+			                if( aGames[ig].type.toUpperCase() == "REVIEW" ) continue;
+			                rank = aGames[ig].white[0].rank;
+			                if( aGames[ig].black[0].name.toUpperCase() == sRecipient.toUpperCase() )rank = aGames[ig].black[0].rank;
+			                break;
+			            } // for( var ig=0; ig<aGames.length; ig++)
+
+                        // show rank as Toast
+                        // MessageToast.show( rank );
+
+                        // set rank in model
+						inModel.setProperty("/recipient/rank", rank);
+
+						// show rank as RatingIndicator
+           				var rank_n = rank.replace('?', ''); // normalized rank: remove ?...
+						switch( rank_n ) {
+						    case "20k": case "19k": case "18k": case "17k": case "16k": selfView.setValue(1);
+						    break;
+
+						    case "15k": case "14k": case "13k": case "12k": case "11k": selfView.setValue(2);
+						    break;
+
+						    case "10k": case "9k": case "8k": case "7k": case "6k": selfView.setValue(3);
+						    break;
+
+						    case "5k": case "4k": case "3k": case "2k": selfView.setValue(4);
+						    break;
+
+						    case "1k": case "1d": case "2d": selfView.setValue(5);
+						    break;
+
+						    case "3d": case "4d": selfView.setValue(6);
+						    break;
+
+						    case "5d": case "6d": selfView.setValue(7);
+						    break;
+
+						    case "7d": case "8d": case "9d": case "1p": case "2p": case "3p": case "4p":
+							case "5p": case "6p": case "7p": case "8p": case "9p": selfView.setValue(8);
+							break;
+
+							default: selfView.setValue(0);
+							break;
+						}
+
+						// opponents average rank
+           				var oppRank = "";
+           				var cumRank = 0;
+           				var cumCount = 0;
+           				var avgOppRank = 0;
+						// winrate
+						var winCount = 0;
+						var winRate = 0.0;
+						var winRateString = "";
+						// escaper
+						var escapeCount = 0;
+						// avatar
+						var caseRecipient = "";
+
+           				for( var ig=0; ig<aGames.length; ig++){
+           				    // only consider 1vs1 games
+           					if( aGames[ig].black.length > 1 ) continue;
+           					if( aGames[ig].type.toUpperCase() == "DEMONSTRATION" ) continue;
+           					if( aGames[ig].type.toUpperCase() == "REVIEW" ) continue;
+
+           					// understand player colour
+           			   		oppRank = aGames[ig].black[0].rank;
+							var pColor = 'W';
+           			   		if(aGames[ig].black[0].name.toUpperCase() == sRecipient.toUpperCase()){
+								oppRank = aGames[ig].white[0].rank;
+								pColor = 'B';
+								caseRecipient = aGames[ig].black[0].name;
+							} else {
+								caseRecipient = aGames[ig].white[0].name;
+							}
+           			   		cumRank += iNormalizeRank( oppRank );
+           			   		cumCount += 1;
+							
+							// calculate winrate (uses cumCount)
+							if( pColor == aGames[ig].result.charAt(0) ) winCount += 1;
+							
+							// calculate escaper count
+							// TODO
+							;;;
+							if( aGames[ig].result.substr(1) == "+Forf" ){
+								// check if winner is not the player -> then escaper
+								if( pColor != aGames[ig].result.charAt(0) ) escapeCount += 1;
+							}
+							
+           				}
+
+           				if( cumCount ) avgOppRank = cumRank * 1.0 / cumCount;
+						console.log( 'average opponent rank:' + avgOppRank );
+
+						if( cumCount ) winRate = winCount * 100.0 / cumCount;
+						winRateString = parseInt( winRate ).toString() + '%';
+						console.log ( 'winrate:' + winRateString );
+						if( sliderView ) sliderView.setText( winRateString );
+						
+						if( escapeCount > 0 ){ escaperView.setVisible(true); }
+						
+						//------------------------------------------------------//
+						// check avatars
+						
+                        // var avatar = this.getView().byId("avatar");
+						
+						// caseRecipient is obtained when checking winRate stats
+						if( caseRecipient != sRecipient ){ 
+							var img = new Image();
+							img.onload = function(){imageExists(true)};
+							img.onerror = function(){imageExists(false)};
+							img.src = "http://goserver.gokgs.com/avatars/" + caseRecipient + ".jpg";
+
+							function imageExists(exists) {
+								if(exists) {
+									avatar.setSrc("http://goserver.gokgs.com/avatars/"+ caseRecipient + ".jpg")
+								}
+								else {
+									avatar.setSrc("img/noavatars.png")
+								} 
+								avatar.setVisible(true);
+								avatar.setDensityAware(false);
+							}
+						}
+						
+						//------------------------------------------------------//
+						
+						var sOppRank = "";
+						sOppRank = parseInt(avgOppRank);
+						if( avgOppRank < 0 ) sOppRank = -1.0 * sOppRank + "d";
+						if( avgOppRank > 0 ) sOppRank = sOppRank + "k";
+						if( sOppRank == '0d') sOppRank = '1k';
+						if( sOppRank == '0k') sOppRank = '1d';
+						inModel.setProperty("/opponents/rank", sOppRank);
+
+						if( avgOppRank < -6){
+						    otherView.setValue(8);
+						} else if( avgOppRank < -4){
+						    otherView.setValue(7);
+						} else if( avgOppRank < -2){
+						    otherView.setValue(6);
+						} else if( avgOppRank < 1){
+						    otherView.setValue(5);
+						} else if( avgOppRank < 5){
+						    otherView.setValue(4);
+						} else if( avgOppRank < 10){
+						    otherView.setValue(3);
+						} else if( avgOppRank < 15){
+						    otherView.setValue(2);
+						} else if( avgOppRank < 20){
+						    otherView.setValue(1);
+						} else {
+						    otherView.setValue(0);
+						}
+
+						// rengo icon
+           				for( var ig=0; ig<aGames.length; ig++){
+						    if( aGames[ig].type.toUpperCase() == "RENGO" ){
+						        rengo.setVisible(true);
+						        break;
+						    }
+						}
+
+						// talkative icon
+						var gicc = 0; // global chat counts
+						var giccNumGames = 0; // global games considered
+						var gG = {};
+					
+						// for(var jx=0; jx<aGames.length; jx++){
+						// remove all games except 2
+
+
+						//--------------### TWO GAMES LIMIT ###--------------//
+						for(var i=aGames.length;i>=0;i--){ if(i>2)aGames.pop()}
+						//--------------### TWO GAMES LIMIT ###--------------//
+
+						aGames.forEach(function(gG){
+						    // gG = aGames[jx];
+							var grequest = gG.sgf_url;
+
+							// console.log("jx:" + jx + "//" + grequest + " " + gG.type);
+							if( grequest != null && gG.type.toUpperCase() != "REVIEW"
+								&& gG.type.toUpperCase() != "DEMONSTRATION" ){ // can be Free, Rated, Teaching, Rengo
+							    console.log(grequest);
+							    giccNumGames += 1;
+							    // MessageToast.show(giccNumGames + " " + gG.type + " " + gG.sgf_url);
+
+								// --------------### TWO GAMES LIMIT ###--------------//
+								// if( giccNumGames > 2 ) return false;
+								// --------------###     GAMES LIMIT ###--------------//
+
+								// jQuery.get(
+								// call YQL
+								$.getJSON("http://query.yahooapis.com/v1/public/yql?"+
+									"q=select%20*%20from%20html%20where%20url%3D%22"+
+									encodeURIComponent(grequest)+
+									"%22&format=xml'&callback=?",
+									// this function gets the data from the successful JSON-P call
+								function(data){
+								    // if there is data, filter it and render it out
+									if(data.results[0]){
+									    var l2 = data.results[0];
+									    var icc = -1; // count of chats! (one will be player name)
+
+										// OUTPUT example:
+										// ["[1]", "[4]", "[UTF-8]", "[CGoban:3]", "[2]", "[Japanese]", "[19]", "[0.50]",
+										// "[900]", "[1x10 byo-yomi]", "[tona]", "[alobar]", "[7k]", "[8k]", "[2017-04-24]",
+										// "[The KGS Go Server at http://www.gokgs.com/]", "[alobar [8k]", "[7k]", "[W+Resign]",
+										//  "[dd]", "
+
+										var s3 = l2.replace(/\[...\]/g, '-').replace(/\[..\]/g, '-').replace(/\[.\]/g, '-');
+										var re = new RegExp( sRecipient, "gi");
+										// var a2 = s2.toUpperCase().match(/FIGHTORDIE/g);
+										var a2 = s3.toUpperCase().match( re );
+										// console.log(jx);
+										gicc += a2.length;
+										gicc -= 1; // remove 1 for each game
+										// console.log("after finishing gicc is:"+ gicc);
+
+										// decide whether to display "Friendly" icon
+						
+										talkative.setVisible(false);
+										// var minGames = 2 * jx;
+										// console.log(jx+' n. of chats is: '+ gicc);
+										var minChats = 2 * giccNumGames;
+										console.log('n. of minimum chats is: '+ minChats.toString());
+										if( gicc >= minChats ) talkative.setVisible(true);
+							
+										//----------------------------------------------------------//
+										// opening style
+			
+										if( gG.board_size == 19 && gG.handicap == null){
+										    /// var aOs = l2.match(/;[BW].\w\w\]/g);
+											// consider only positions 0..3 (first 4 moves)
+											// console.log(aOs[0]+aOs[1]+aOs[2]+aOs[3]);
+											var aOs = [];
+											// note: move number depend on player (maybe read it from PW[] / PB[] since i have the SGF here?)
+											if( gG.black[0].name.toUpperCase() == sRecipient.toUpperCase() ){
+											    // player black
+												aOs = l2.match(/;B.\w\w\]/g);
+											} else {
+											    // player white
+												aOs = l2.match(/;W.\w\w\]/g);
+											}
+
+											var myEval = aOs[0].charAt(3) + aOs[0].charAt(4);
+											switch(myEval){
+											    case "dd": case "pd": case "dp": case "pp": style44.setVisible(true);// MessageToast.show("4-4");
+												break;
+
+												case "cc": case "qc": case "cq": case "qq": style33.setVisible(true);// MessageToast.show("3-3");
+												break;
+
+												case "dc": case "pc": case "pq": case "dq": case "cd": case "cp":
+												    case "qp": case "qd": style43.setVisible(true);// MessageToast.show("4-3");
+												break;
+
+												case "ec": case "oc": case "oq": case "eq": case "ce": case "co":
+												    case "qo": case "qe": style53.setVisible(true);// MessageToast.show("5-3");
+												break;
+
+												case "ed": case "od": case "op": case "ep": case "de": case "do":
+												    case "po": case "pe": style54.setVisible(true);// MessageToast.show("5-4");
+												break;
+												default:
+											}
+
+											var myEval = aOs[1].charAt(3) + aOs[1].charAt(4);
+											switch(myEval){
+											    case "dd": case "pd": case "dp": case "pp": style44.setVisible(true);// MessageToast.show("4-4");
+												break;
+
+												case "cc": case "qc": case "cq": case "qq": style33.setVisible(true);// MessageToast.show("3-3");
+												break;
+
+												case "dc": case "pc": case "pq": case "dq": case "cd": case "cp":
+												    case "qp": case "qd": style43.setVisible(true);// MessageToast.show("4-3");
+												break;
+
+												case "ec": case "oc": case "oq": case "eq": case "ce": case "co":
+												    case "qo": case "qe": style53.setVisible(true);// MessageToast.show("5-3");
+												break;
+
+												case "ed": case "od": case "op": case "ep": case "de": case "do":
+												    case "po": case "pe": style54.setVisible(true);// MessageToast.show("5-4");
+												break;
+												default:
+											}
+										}
+										// otherwise tell the world that something went wrong
+										} else {
+                                        var errormsg = 'Error: cant load the game.';
+                                        MessageToast.show(errormsg);
+                                    }
+								});
+							} ; // if !Review
+								// };  // $.each aGames[]
+						});
+			        },
+
+					onGo : function () {
+			            // read user from input field
+						var oBundle = this.getView().getModel("i18n").getResourceBundle();
+						var sRecipient = this.getView().getModel().getProperty("/recipient/username");
+
+						// define proxies for jQuery.get call, and set defaults
+						var selfView = this.getView().byId("rating");
+						selfView.setValue(0);
+
+						var otherView = this.getView().byId("ratingOpp");
+						otherView.setValue(0);
+
+						var sliderView = this.getView().byId("winrate");
+						var escaperView = this.getView().byId("tal");
+						var style44 = this.getView().byId("style44");
+						var style43 = this.getView().byId("style43");
+						var style33 = this.getView().byId("style33");
+						var style53 = this.getView().byId("style53");
+						var style54 = this.getView().byId("style54");
+						sliderView.setText( "" );
+						escaperView.setVisible(false);
+						style44.setDensityAware(false);
+						style43.setDensityAware(false);
+						style33.setDensityAware(false);
+						style53.setDensityAware(false);
+						style54.setDensityAware(false);
+						style44.setVisible(false);
+						style43.setVisible(false);
+						style33.setVisible(false);
+						style53.setVisible(false);
+						style54.setVisible(false);
+						
+						var infopanel = this.getView().byId("infopanel")
+                        infopanel.setVisible(false);			
+						
+						//check empty field "KGS nickname"
+						if(sRecipient == ""){
+							infopanel.setVisible(false);			
+							// alert('You didn\'t enter a nickname!');
+							}
+						else {
+							infopanel.setVisible(true);			
+						};
+
+						var talkative = this.getView().byId("talkative");
+						talkative.setVisible(false);
+						var rengo = this.getView().byId("rengo");
+						rengo.setVisible(false);
+
+						var inModel = this.getView().getModel();
+						inModel.setProperty("/recipient/rank", "");
+						inModel.setProperty("/opponents/rank", "");
+
+						var iNormalizeRank = this.normalizeRank;
+
+						// exit if null query
+						if( sRecipient == "" ) return false;
+
+						//check avatars
+						var avatar = this.getView().byId("avatar");
+						// ...the rest is moved inside the get request
+						
+						// fallback to show image, even if no games
+						var img = new Image();
+                        img.onload = function(){imageExists(true)};
+                        img.onerror = function(){imageExists(false)};
+                        img.src = "http://goserver.gokgs.com/avatars/" + sRecipient + ".jpg";
+
+                        function imageExists(exists) {
+                            if(exists) {
+                                avatar.setSrc("http://goserver.gokgs.com/avatars/"+ sRecipient + ".jpg")
+                            }
+                            else {
+                                avatar.setSrc("img/noavatars.png")
+                            } 
+                            avatar.setVisible(true);
+                            avatar.setDensityAware(false);
+                        }						
+						
+						// define request
+						var krequest = 'https://metakgs.org/api/archives/' + sRecipient;
+
+						var mainFunction2 = this.mainFunction;
+
+						jQuery.get(
+						    krequest, {},
+							function(l){
+						        // console.log(l);
+								var html = "";
+								// console.log(l);
+								// parse rank from response (l)
+								var rank = '?';
+								var aGames = l.content.games;
+								if( aGames.length > 0 ){
+								    mainFunction2(l, rank, aGames, sRecipient, selfView, otherView,
+										sliderView,	style44, style43, style33, style53, style54,
+										talkative, rengo, avatar, inModel, iNormalizeRank, escaperView);
+								}  else  {  // if( aGames.length > 0 ){
+									// SCAN PREVIOUS MONTH, SAME LOGIC (mainFunction)
+									MessageToast.show("No games in last month, scanning previous");
+									console.log(l.link.prev);
+									krequest = l.link.prev;
+
+									jQuery.get(
+									    krequest, {},
+										function(l){
+									        // console.log(l);
+											var html = "";
+											// parse rank from response (l)
+             	    	  	 				var rank = '?';
+             	    	  	 				var aGames = l.content.games;
+             	    	  	 				if( aGames.length > 0 ){
+             	    	  	 				    mainFunction2(l, rank, aGames, sRecipient, selfView, otherView,
+													sliderView,	style44, style43, style33, style53, style54,
+													talkative, rengo, avatar, inModel, iNormalizeRank, escaperView);
+             	    	  	 				}  else  {  // if( aGames.length > 0 ){
+												MessageToast.show("No games in last and next-to-last month");
+             	    	  	 				}	 // if( aGames.length > 0 ){
+											}, 'json'
+									).fail( function(e){
+									    MessageToast.show("Oops! Some error occurred");
+                                        infopanel.setVisible(false);
+                                    } );
+								} // if( aGames.length > 0 ){
+								}, 'json'
+						).fail( function(e){
+						    MessageToast.show("Oops! Some error occurred");
+                            infopanel.setVisible(false);
+                        } );
+			        }
+			    });
+			});
+
+
+
+			/*** THIS IS THE "APPLICATION" CODE ***/
+
+			// instantiate the View
+			var myView = sap.ui.xmlview({viewContent:jQuery('#view1').html()}); // accessing the HTML inside the script tag above
+ 
+			// put the View onto the screen
+			myView.placeAt('content');
+		</script>
+	</head>
+
+	<body class="sapUiBody" id="content">
 	  <div id="asdas"></div>
    </body>
    
