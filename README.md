@@ -35,6 +35,12 @@ Next, create an "img" folder.
 
 Finally, download the images in the img folder.
 
+## Endpoint
+
+The app has also been published by @kgsnick at:
+ - http://unkgs.kgsnick.ru/
+
+
 ## External libraries used and references
 
 ### UI
