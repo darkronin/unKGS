@@ -395,7 +395,7 @@
            				var oppRank = "";
            				var avgOppRank = 0;
 						var winRateString = "";
-						
+						var caseRecipient = "";
 						
 						if(unKGS.partials.cumCount > 0){
 						
@@ -428,7 +428,10 @@
            			   		if(aGames[ig].black[0].name.toUpperCase() == sRecipient.toUpperCase()){
 								oppRank = aGames[ig].white[0].rank;
 								pColor = 'B';
-							} 
+								caseRecipient = aGames[ig].black[0].name;
+							} else {
+							 	caseRecipient = aGames[ig].white[0].name;
+							}
            			   		cumRank += iNormalizeRank( oppRank );
            			   		cumCount += 1;
 							
@@ -494,12 +497,28 @@
 						unKGS.partials.cumRank = cumRank;
 						unKGS.partials.winCount = winCount;
 						unKGS.partials.escapeCount = escapeCount;
+	
+						// AVATAR
+						// use caseRecipient
+                        var img = new Image();
+                        img.onload = function(){imageExists(true)};
+                        img.onerror = function(){imageExists(false)};
+                        img.src = "http://goserver.gokgs.com/avatars/" + caseRecipient + ".jpg";
 
-						// TODO: retrieve variables from partials
+                        function imageExists(exists) {
+                            if(exists) {
+                                unKGS.controls.avatar.setSrc("http://goserver.gokgs.com/avatars/"+ caseRecipient + ".jpg")
+                            }
+                            else {
+                                unKGS.controls.avatar.setSrc("img/noavatars.png")
+                            } 
+                            unKGS.controls.avatar.setVisible(true);
+                            unKGS.controls.avatar.setDensityAware(false);
+                        }
+											
 						
 						//============================================================//
            				// if( cumCount > minimum threshold...)
-           				// TODO
 						//
 									// krequest = l.link.prev;
 						if( cumCount < 10  &&  !recursion ){
@@ -807,22 +826,7 @@
 						//check avatars
 						
                         unKGS.controls.avatar = this.getView().byId("avatar");
-						
-                        var img = new Image();
-                        img.onload = function(){imageExists(true)};
-                        img.onerror = function(){imageExists(false)};
-                        img.src = "http://goserver.gokgs.com/avatars/" + sRecipient + ".jpg";
-
-                        function imageExists(exists) {
-                            if(exists) {
-                                unKGS.controls.avatar.setSrc("http://goserver.gokgs.com/avatars/"+ sRecipient + ".jpg")
-                            }
-                            else {
-                                unKGS.controls.avatar.setSrc("img/noavatars.png")
-                            } 
-                            unKGS.controls.avatar.setVisible(true);
-                            unKGS.controls.avatar.setDensityAware(false);
-                        }
+						// moved inside the GET
 						
 						// define request
 						var krequest = 'https://metakgs.org/api/archives/' + sRecipient;
