@@ -11,14 +11,16 @@
 				width: 100%;
 				height: 1pt;
 			}
-
+			
+			.tst {	// 1 .8 background-size: cover;		}
+			
 			.img1 {
-				
 				background: linear-gradient(
   				rgba(255,255,255,1),
   				rgba(255,255,255,.8)),
 				url('img/background.jpg');
-				background-size: cover;				
+				background-size: cover;						
+
 			}
 			
 			.rating {
@@ -45,7 +47,7 @@
 				}
 		</style>
 	
-		<script 
+		<script 			
 			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
 			id="sap-ui-bootstrap"
 			data-sap-ui-theme="sap_bluecrystal"
@@ -54,6 +56,12 @@
 			data-sap-ui-preload="no"
 			data-sap-ui-resourceroots='{ "sap.ui.demo.wt": "./"	}' >
 		</script>
+   
+		<!-- ######################################################################### -->
+		<!-- ######################################################################### -->
+		<!--					 V I E W 			 								   -->
+		<!-- ######################################################################### -->
+		<!-- ######################################################################### -->					
    
 		<script id="view1" type="sapui5/xmlview">
 			<mvc:View
@@ -85,8 +93,6 @@
 												text="{i18n>Look it up!}"
 												press="onGo"
 												class="sapUiSmallMarginEnd"/>
-
-							
 										</content>
 
 									</Panel>
@@ -114,46 +120,12 @@
 											<layout:MatrixLayout layoutFixed="false" columns="1" width="100%">
 
 
-												<!-- -/-/-/-/-/-/-/-/-/-/Avatar/-/-/-/-/-/-/-/-/-/-/ -->
-												<layout:MatrixLayoutRow>
-													<layout:cells>
-														<layout:MatrixLayoutCell>
-																<Text 
-																	class="text345"
-																	text="Avatar"
-																	/>
-														</layout:MatrixLayoutCell>
-													</layout:cells>
-												</layout:MatrixLayoutRow>
-												<layout:MatrixLayoutRow>
-													<layout:cells>
-														<layout:MatrixLayoutCell>
-															<!-- AVATAR (why not? ) -->
-																<Image
-																	id="avatar"
-																	class="sapUiSmallMargin"
-																	src=""
-																	visible="false"/>
-														</layout:MatrixLayoutCell>
-													</layout:cells>
-												</layout:MatrixLayoutRow>
-												<layout:MatrixLayoutRow>
-													<layout:cells>
-														<layout:MatrixLayoutCell>
-																<Text class="devider"/>
-														</layout:MatrixLayoutCell>
-													</layout:cells>
-												</layout:MatrixLayoutRow>
-
 
 
 												<!-- -/-/-/-/-/-/-/-/-/-/Player strength vs average opponent's strength/-/-/-/-/-/-/-/-/-/-/ -->
 												<layout:MatrixLayoutRow>
 													<layout:cells>
 														<layout:MatrixLayoutCell>
-																<Text 
-																	class="text345"
-																	text="Player strength vs average opponent's strength"/>
 														</layout:MatrixLayoutCell>
 													</layout:cells>
 												</layout:MatrixLayoutRow>
@@ -194,22 +166,19 @@
 														</layout:MatrixLayoutCell>
 													</layout:cells>
 												</layout:MatrixLayoutRow>
-												<layout:MatrixLayoutRow>
+												<!--layout:MatrixLayoutRow>
 													<layout:cells>
 														<layout:MatrixLayoutCell>
 																<Text class="devider"/>
 														</layout:MatrixLayoutCell>
 													</layout:cells>
-												</layout:MatrixLayoutRow>
+												</layout:MatrixLayoutRow-->
 
 
 												<!-- -/-/-/-/-/-/-/-/-/-/Escape indicator/-/-/-/-/-/-/-/-/-/-/ -->
 												<layout:MatrixLayoutRow>
 													<layout:cells>
 														<layout:MatrixLayoutCell>
-																<Text
-																	class="text345"
-																	text="Escape indicator"/>
 														</layout:MatrixLayoutCell>
 													</layout:cells>
 												</layout:MatrixLayoutRow>
@@ -227,22 +196,12 @@
 														</layout:MatrixLayoutCell>
 													</layout:cells>
 												</layout:MatrixLayoutRow>
-												<layout:MatrixLayoutRow>
-													<layout:cells>
-														<layout:MatrixLayoutCell>
-																<Text class="devider"/>
-														</layout:MatrixLayoutCell>
-													</layout:cells>
-												</layout:MatrixLayoutRow>
 
 
 												<!-- -/-/-/-/-/-/-/-/-/-/Communicative indicator/-/-/-/-/-/-/-/-/-/-/ -->
 												<layout:MatrixLayoutRow>
 													<layout:cells>
 														<layout:MatrixLayoutCell>
-																<Text 
-																	class="text345"
-																	text="Communicative indicator"/>
 														</layout:MatrixLayoutCell>
 													</layout:cells>
 												</layout:MatrixLayoutRow>
@@ -260,22 +219,13 @@
 														</layout:MatrixLayoutCell>
 													</layout:cells>
 												</layout:MatrixLayoutRow>
-												<layout:MatrixLayoutRow>
-													<layout:cells>
-														<layout:MatrixLayoutCell>
-																<Text class="devider"/>
-														</layout:MatrixLayoutCell>
-													</layout:cells>
-												</layout:MatrixLayoutRow>
+												
 
 
 												<!-- -/-/-/-/-/-/-/-/-/-/Rengo indicator/-/-/-/-/-/-/-/-/-/-/ -->
 												<layout:MatrixLayoutRow>
 													<layout:cells>
 														<layout:MatrixLayoutCell>
-																<Text 
-																	class="text345"
-																	text="Rengo indicator"/>
 														</layout:MatrixLayoutCell>
 													</layout:cells>
 												</layout:MatrixLayoutRow>
@@ -293,22 +243,13 @@
 														</layout:MatrixLayoutCell>
 													</layout:cells>
 												</layout:MatrixLayoutRow>
-												<layout:MatrixLayoutRow>
-													<layout:cells>
-														<layout:MatrixLayoutCell>
-																<Text class="devider"/>
-														</layout:MatrixLayoutCell>
-													</layout:cells>
-												</layout:MatrixLayoutRow>
+												
 
 
 												<!-- -/-/-/-/-/-/-/-/-/-/Opening style indicator/-/-/-/-/-/-/-/-/-/-/ -->
 												<layout:MatrixLayoutRow>
 													<layout:cells>
 														<layout:MatrixLayoutCell>
-																<Text 
-																	class="text345"
-																	text="Opening style indicators: what player usually plays in the first 4 moves."/>
 														</layout:MatrixLayoutCell>
 													</layout:cells>
 												</layout:MatrixLayoutRow>
@@ -325,6 +266,20 @@
 													</layout:cells>
 												</layout:MatrixLayoutRow>
 
+												<!-- -/-/-/-/-/-/-/-/-/-/Avatar/-/-/-/-/-/-/-/-/-/-/ -->
+												<layout:MatrixLayoutRow>
+													<layout:cells>
+														<layout:MatrixLayoutCell>
+															<!-- AVATAR (why not? ) -->
+																<Image
+																	id="avatar"
+																	class="sapUiSmallMargin"
+																	src=""
+																	visible="false"/>
+														</layout:MatrixLayoutCell>
+													</layout:cells>
+												</layout:MatrixLayoutRow>
+												
 											</layout:MatrixLayout>
 										</content>
 									</Panel>
@@ -337,6 +292,12 @@
 			</mvc:View>
 		</script> <!-- id="view1" -->
 
+		<!-- ######################################################################### -->
+		<!-- ######################################################################### -->
+		<!--					 C O N T R O L L E R 								   -->
+		<!-- ######################################################################### -->
+		<!-- ######################################################################### -->					
+		
 		<script>
 			sap.ui.define([
 			    "sap/ui/core/mvc/Controller",
@@ -367,6 +328,7 @@
 						    bundleName: "sap.ui.demo.wt.i18n.i18n"
 						});
 						this.getView().setModel(i18nModel, "i18n");
+												
 			        },
 
 					onAfterRendering : function () {
@@ -395,9 +357,188 @@
 			            }
 			            return oRank;
 			        },
+// mainfunction
+					mainFunction : function( l, rank, aGames, sRecipient, inModel, iNormalizeRank, unKGS, recursion, mf) {
+						
+						// obtain individual controls from the unKGS.controls object
+						var ratingSelf = unKGS.controls.ratingSelf;
+						var ratingOpp = unKGS.controls.ratingOpp;
+						var sliderView = unKGS.controls.sliderView;
+						var style44 = unKGS.controls.style44;
+						var style43 = unKGS.controls.style43;
+						var style33 = unKGS.controls.style33;
+						var style53 = unKGS.controls.style53;
+						var style54 = unKGS.controls.style54;
+						var talkative = unKGS.controls.talkative;
+						var rengo = unKGS.controls.rengo;
+						var avatar = unKGS.controls.avatar;
+						var escaperView = unKGS.controls.escaperView;
+						
+						
+						// get recursive reference to itself 
+						var mainFunction2 = mf;
+						
+						
 
-					mainFunction : function( l, rank, aGames, sRecipient, selfView, otherView, sliderView, style44, style43,
-											 style33, style53, style54, talkative, rengo, avatar, inModel, iNormalizeRank, escaperView) {
+						
+						
+						//============================================================//
+						
+						//------------------------------------------------------------//
+						//  Loop on array of games:
+						//    - average opponent rank ( cumRank, cumCount ) (avgOppRank) avgOppRank = cumRank * 1.0 / cumCount;
+						//    - winrate (winCount, cumCount) winRate = winCount * 100.0 / cumCount;
+						//    - escape count (escapeCount)
+						//------------------------------------------------------------//
+
+						// opponents average rank
+           				var oppRank = "";
+           				var avgOppRank = 0;
+						var winRateString = "";
+						
+						
+						if(unKGS.partials.cumCount > 0){
+						
+							var cumCount = unKGS.partials.cumCount;
+							var cumRank = unKGS.partials.cumRank;
+							var winCount = unKGS.partials.winCount ;
+							var escapeCount = unKGS.partials.escapeCount;
+
+						} else {
+           					
+           					var cumRank = 0;
+           					var cumCount = 0;
+							// winrate
+							var winCount = 0;
+							var winRate = 0.0;
+							// escaper
+							var escapeCount = 0;							
+							
+						}
+
+           				for( var ig=0; ig<aGames.length; ig++){
+           				    // only consider 1vs1 games
+           					if( aGames[ig].black.length > 1 ) continue;  // eliminates rengo
+           					if( aGames[ig].type.toUpperCase() == "DEMONSTRATION" ) continue; // eliminates demo
+           					if( aGames[ig].type.toUpperCase() == "REVIEW" ) continue; // eliminates reviews
+
+           					// understand player colour
+           			   		oppRank = aGames[ig].black[0].rank;
+							var pColor = 'W';
+           			   		if(aGames[ig].black[0].name.toUpperCase() == sRecipient.toUpperCase()){
+								oppRank = aGames[ig].white[0].rank;
+								pColor = 'B';
+							} 
+           			   		cumRank += iNormalizeRank( oppRank );
+           			   		cumCount += 1;
+							
+							// calculate winrate (uses cumCount)
+							if( pColor == aGames[ig].result.charAt(0) ) winCount += 1;
+							
+							// calculate escaper count
+							// TODO
+							;;;
+							if( aGames[ig].result.substr(1) == "+Forfeit" ){
+								// check if winner is not the player -> then escaper
+								if( pColor != aGames[ig].result.charAt(0) ) escapeCount += 1;
+							}
+							
+           				}
+           				
+           		
+           				if( cumCount ) avgOppRank = cumRank * 1.0 / cumCount;
+						console.log( 'average opponent rank:' + avgOppRank );
+
+						if( cumCount ) winRate = winCount * 100.0 / cumCount;
+						winRateString = parseInt( winRate ).toString() + '%';
+						console.log ( 'winrate:' + winRateString );
+						if( sliderView ) sliderView.setText( winRateString );
+						
+						if( escapeCount > 1 ){ escaperView.setVisible(true); }
+						
+						var sOppRank = "";
+						sOppRank = parseInt(avgOppRank);
+						if( avgOppRank < 0 ) sOppRank = -1.0 * sOppRank + "d";
+						if( avgOppRank > 0 ) sOppRank = sOppRank + "k";
+						if( sOppRank == '0d') sOppRank = '1k';
+						if( sOppRank == '0k') sOppRank = '1d';
+						inModel.setProperty("/opponents/rank", sOppRank);
+
+						if( avgOppRank < -6){
+						    ratingOpp.setValue(8);
+						} else if( avgOppRank < -4){
+						    ratingOpp.setValue(7);
+						} else if( avgOppRank < -2){
+						    ratingOpp.setValue(6);
+						} else if( avgOppRank < 1){
+						    ratingOpp.setValue(5);
+						} else if( avgOppRank < 5){
+						    ratingOpp.setValue(4);
+						} else if( avgOppRank < 10){
+						    ratingOpp.setValue(3);
+						} else if( avgOppRank < 15){
+						    ratingOpp.setValue(2);
+						} else if( avgOppRank < 20){
+						    ratingOpp.setValue(1);
+						} else {
+						    ratingOpp.setValue(0);
+						}
+
+						console.log('logging partials at recursion: ' + recursion);
+						console.log('cumCount (total games considered): ' + cumCount);
+						console.log('cumRank (sum of opponent ranks): '+ cumRank);
+						console.log('winCount: '+winCount);
+						console.log('escapeCount: '+escapeCount);
+						
+						unKGS.partials.cumCount = cumCount;
+						unKGS.partials.cumRank = cumRank;
+						unKGS.partials.winCount = winCount;
+						unKGS.partials.escapeCount = escapeCount;
+
+						// TODO: retrieve variables from partials
+						
+						//============================================================//
+           				// if( cumCount > minimum threshold...)
+           				// TODO
+						//
+									// krequest = l.link.prev;
+						if( cumCount < 10  &&  !recursion ){
+									jQuery.get(
+									    l.link.prev, {},
+										function(l2){
+									        // console.log(l);
+											var html = "";
+											// parse rank from response (l)
+             	    	  	 				var rank = '?';
+             	    	  	 				var aGames2 = l2.content.games;
+             	    	  	 				if( aGames2.length > 0 ){             	    	  	 				
+             	    	  	 				
+             	    	  	 				    mainFunction2( l2, rank, aGames2, sRecipient, inModel, iNormalizeRank, unKGS, 1);													
+													
+             	    	  	 				}  
+											}, 'json'
+									).fail( function(e){
+									    MessageToast.show("Oops! Recursion call error");
+                                        // infopanel.setVisible(false);
+                                    } );
+                        }           					
+						//
+
+
+						//============================================================//
+						
+						// avoid recursion
+						if(recursion) return true;
+						
+						//============================================================//
+
+						
+						//------------------------------------------------------------//
+						//  Get player rank (from last game)
+						//   N.B. this means that, if the player was promoted after winning,
+						//   or demoted after losing, the rank is an OUTDATED rank.
+						//------------------------------------------------------------//
+						// 1 time only								
 			            for( var ig=0; ig<aGames.length; ig++){
                             // only consider 1vs1 games
 			                if( aGames[ig].black.length > 1 ) continue;
@@ -417,144 +558,35 @@
 						// show rank as RatingIndicator
            				var rank_n = rank.replace('?', ''); // normalized rank: remove ?...
 						switch( rank_n ) {
-						    case "20k": case "19k": case "18k": case "17k": case "16k": selfView.setValue(1);
+						    case "20k": case "19k": case "18k": case "17k": case "16k": ratingSelf.setValue(1);
 						    break;
 
-						    case "15k": case "14k": case "13k": case "12k": case "11k": selfView.setValue(2);
+						    case "15k": case "14k": case "13k": case "12k": case "11k": ratingSelf.setValue(2);
 						    break;
 
-						    case "10k": case "9k": case "8k": case "7k": case "6k": selfView.setValue(3);
+						    case "10k": case "9k": case "8k": case "7k": case "6k": ratingSelf.setValue(3);
 						    break;
 
-						    case "5k": case "4k": case "3k": case "2k": selfView.setValue(4);
+						    case "5k": case "4k": case "3k": case "2k": ratingSelf.setValue(4);
 						    break;
 
-						    case "1k": case "1d": case "2d": selfView.setValue(5);
+						    case "1k": case "1d": case "2d": ratingSelf.setValue(5);
 						    break;
 
-						    case "3d": case "4d": selfView.setValue(6);
+						    case "3d": case "4d": ratingSelf.setValue(6);
 						    break;
 
-						    case "5d": case "6d": selfView.setValue(7);
+						    case "5d": case "6d": ratingSelf.setValue(7);
 						    break;
 
 						    case "7d": case "8d": case "9d": case "1p": case "2p": case "3p": case "4p":
-							case "5p": case "6p": case "7p": case "8p": case "9p": selfView.setValue(8);
+							case "5p": case "6p": case "7p": case "8p": case "9p": ratingSelf.setValue(8);
 							break;
 
-							default: selfView.setValue(0);
+							default: ratingSelf.setValue(0);
 							break;
 						}
-
-						// opponents average rank
-           				var oppRank = "";
-           				var cumRank = 0;
-           				var cumCount = 0;
-           				var avgOppRank = 0;
-						// winrate
-						var winCount = 0;
-						var winRate = 0.0;
-						var winRateString = "";
-						// escaper
-						var escapeCount = 0;
-						// avatar
-						var caseRecipient = "";
-
-           				for( var ig=0; ig<aGames.length; ig++){
-           				    // only consider 1vs1 games
-           					if( aGames[ig].black.length > 1 ) continue;
-           					if( aGames[ig].type.toUpperCase() == "DEMONSTRATION" ) continue;
-           					if( aGames[ig].type.toUpperCase() == "REVIEW" ) continue;
-
-           					// understand player colour
-           			   		oppRank = aGames[ig].black[0].rank;
-							var pColor = 'W';
-           			   		if(aGames[ig].black[0].name.toUpperCase() == sRecipient.toUpperCase()){
-								oppRank = aGames[ig].white[0].rank;
-								pColor = 'B';
-								caseRecipient = aGames[ig].black[0].name;
-							} else {
-								caseRecipient = aGames[ig].white[0].name;
-							}
-           			   		cumRank += iNormalizeRank( oppRank );
-           			   		cumCount += 1;
-							
-							// calculate winrate (uses cumCount)
-							if( pColor == aGames[ig].result.charAt(0) ) winCount += 1;
-							
-							// calculate escaper count
-							// TODO
-							;;;
-							if( aGames[ig].result.substr(1) == "+Forf" ){
-								// check if winner is not the player -> then escaper
-								if( pColor != aGames[ig].result.charAt(0) ) escapeCount += 1;
-							}
-							
-           				}
-
-           				if( cumCount ) avgOppRank = cumRank * 1.0 / cumCount;
-						console.log( 'average opponent rank:' + avgOppRank );
-
-						if( cumCount ) winRate = winCount * 100.0 / cumCount;
-						winRateString = parseInt( winRate ).toString() + '%';
-						console.log ( 'winrate:' + winRateString );
-						if( sliderView ) sliderView.setText( winRateString );
 						
-						if( escapeCount > 0 ){ escaperView.setVisible(true); }
-						
-						//------------------------------------------------------//
-						// check avatars
-						
-                        // var avatar = this.getView().byId("avatar");
-						
-						// caseRecipient is obtained when checking winRate stats
-						if( caseRecipient != sRecipient ){ 
-							var img = new Image();
-							img.onload = function(){imageExists(true)};
-							img.onerror = function(){imageExists(false)};
-							img.src = "http://goserver.gokgs.com/avatars/" + caseRecipient + ".jpg";
-
-							function imageExists(exists) {
-								if(exists) {
-									avatar.setSrc("http://goserver.gokgs.com/avatars/"+ caseRecipient + ".jpg")
-								}
-								else {
-									avatar.setSrc("img/noavatars.png")
-								} 
-								avatar.setVisible(true);
-								avatar.setDensityAware(false);
-							}
-						}
-						
-						//------------------------------------------------------//
-						
-						var sOppRank = "";
-						sOppRank = parseInt(avgOppRank);
-						if( avgOppRank < 0 ) sOppRank = -1.0 * sOppRank + "d";
-						if( avgOppRank > 0 ) sOppRank = sOppRank + "k";
-						if( sOppRank == '0d') sOppRank = '1k';
-						if( sOppRank == '0k') sOppRank = '1d';
-						inModel.setProperty("/opponents/rank", sOppRank);
-
-						if( avgOppRank < -6){
-						    otherView.setValue(8);
-						} else if( avgOppRank < -4){
-						    otherView.setValue(7);
-						} else if( avgOppRank < -2){
-						    otherView.setValue(6);
-						} else if( avgOppRank < 1){
-						    otherView.setValue(5);
-						} else if( avgOppRank < 5){
-						    otherView.setValue(4);
-						} else if( avgOppRank < 10){
-						    otherView.setValue(3);
-						} else if( avgOppRank < 15){
-						    otherView.setValue(2);
-						} else if( avgOppRank < 20){
-						    otherView.setValue(1);
-						} else {
-						    otherView.setValue(0);
-						}
 
 						// rengo icon
            				for( var ig=0; ig<aGames.length; ig++){
@@ -563,6 +595,12 @@
 						        break;
 						    }
 						}
+						
+						//============================================================//
+						
+						//------------------------------------------------------------//
+						//  Look inside games
+						//------------------------------------------------------------//
 
 						// talkative icon
 						var gicc = 0; // global chat counts
@@ -571,7 +609,6 @@
 					
 						// for(var jx=0; jx<aGames.length; jx++){
 						// remove all games except 2
-
 
 						//--------------### TWO GAMES LIMIT ###--------------//
 						for(var i=aGames.length;i>=0;i--){ if(i>2)aGames.pop()}
@@ -626,7 +663,8 @@
 										// var minGames = 2 * jx;
 										// console.log(jx+' n. of chats is: '+ gicc);
 										var minChats = 2 * giccNumGames;
-										console.log('n. of minimum chats is: '+ minChats.toString());
+										
+										console.log('chats detected: ' + gicc + '; ' + 'n. of minimum chats is: '+ minChats.toString());
 										if( gicc >= minChats ) talkative.setVisible(true);
 							
 										//----------------------------------------------------------//
@@ -700,55 +738,62 @@
 								// };  // $.each aGames[]
 						});
 			        },
+// mainfunction end
 
 					onGo : function () {
+
+						// define globals
+						var unKGS = {};
+						unKGS.controls = {};
+						unKGS.partials = {};
+					
 			            // read user from input field
 						var oBundle = this.getView().getModel("i18n").getResourceBundle();
 						var sRecipient = this.getView().getModel().getProperty("/recipient/username");
 
 						// define proxies for jQuery.get call, and set defaults
-						var selfView = this.getView().byId("rating");
-						selfView.setValue(0);
+						unKGS.controls.ratingSelf = this.getView().byId("rating");
+						unKGS.controls.ratingSelf.setValue(0);
 
-						var otherView = this.getView().byId("ratingOpp");
-						otherView.setValue(0);
+						unKGS.controls.ratingOpp = this.getView().byId("ratingOpp");
+						unKGS.controls.ratingOpp.setValue(0);
 
-						var sliderView = this.getView().byId("winrate");
-						var escaperView = this.getView().byId("tal");
-						var style44 = this.getView().byId("style44");
-						var style43 = this.getView().byId("style43");
-						var style33 = this.getView().byId("style33");
-						var style53 = this.getView().byId("style53");
-						var style54 = this.getView().byId("style54");
-						sliderView.setText( "" );
-						escaperView.setVisible(false);
-						style44.setDensityAware(false);
-						style43.setDensityAware(false);
-						style33.setDensityAware(false);
-						style53.setDensityAware(false);
-						style54.setDensityAware(false);
-						style44.setVisible(false);
-						style43.setVisible(false);
-						style33.setVisible(false);
-						style53.setVisible(false);
-						style54.setVisible(false);
+						unKGS.controls.sliderView = this.getView().byId("winrate");
+						unKGS.controls.escaperView = this.getView().byId("tal");
+						unKGS.controls.style44 = this.getView().byId("style44");
+						unKGS.controls.style43 = this.getView().byId("style43");
+						unKGS.controls.style33 = this.getView().byId("style33");
+						unKGS.controls.style53 = this.getView().byId("style53");
+						unKGS.controls.style54 = this.getView().byId("style54");
+						unKGS.controls.sliderView.setText( "" );
+						unKGS.controls.escaperView.setVisible(false);
+						unKGS.controls.style44.setDensityAware(false);
+						unKGS.controls.style43.setDensityAware(false);
+						unKGS.controls.style33.setDensityAware(false);
+						unKGS.controls.style53.setDensityAware(false);
+						unKGS.controls.style54.setDensityAware(false);
+						unKGS.controls.style44.setVisible(false);
+						unKGS.controls.style43.setVisible(false);
+						unKGS.controls.style33.setVisible(false);
+						unKGS.controls.style53.setVisible(false);
+						unKGS.controls.style54.setVisible(false);
 						
-						var infopanel = this.getView().byId("infopanel")
-                        infopanel.setVisible(false);			
+						unKGS.controls.infopanel = this.getView().byId("infopanel")
+                        unKGS.controls.infopanel.setVisible(false);			
 						
 						//check empty field "KGS nickname"
 						if(sRecipient == ""){
-							infopanel.setVisible(false);			
-							// alert('You didn\'t enter a nickname!');
+							unKGS.controls.infopanel.setVisible(false);			
+							alert('You didn\'t enter a nickname!');
 							}
 						else {
-							infopanel.setVisible(true);			
+							unKGS.controls.infopanel.setVisible(true);			
 						};
 
-						var talkative = this.getView().byId("talkative");
-						talkative.setVisible(false);
-						var rengo = this.getView().byId("rengo");
-						rengo.setVisible(false);
+						unKGS.controls.talkative = this.getView().byId("talkative");
+						unKGS.controls.talkative.setVisible(false);
+						unKGS.controls.rengo = this.getView().byId("rengo");
+						unKGS.controls.rengo.setVisible(false);
 
 						var inModel = this.getView().getModel();
 						inModel.setProperty("/recipient/rank", "");
@@ -760,25 +805,24 @@
 						if( sRecipient == "" ) return false;
 
 						//check avatars
-						var avatar = this.getView().byId("avatar");
-						// ...the rest is moved inside the get request
 						
-						// fallback to show image, even if no games
-						var img = new Image();
+                        unKGS.controls.avatar = this.getView().byId("avatar");
+						
+                        var img = new Image();
                         img.onload = function(){imageExists(true)};
                         img.onerror = function(){imageExists(false)};
                         img.src = "http://goserver.gokgs.com/avatars/" + sRecipient + ".jpg";
 
                         function imageExists(exists) {
                             if(exists) {
-                                avatar.setSrc("http://goserver.gokgs.com/avatars/"+ sRecipient + ".jpg")
+                                unKGS.controls.avatar.setSrc("http://goserver.gokgs.com/avatars/"+ sRecipient + ".jpg")
                             }
                             else {
-                                avatar.setSrc("img/noavatars.png")
+                                unKGS.controls.avatar.setSrc("img/noavatars.png")
                             } 
-                            avatar.setVisible(true);
-                            avatar.setDensityAware(false);
-                        }						
+                            unKGS.controls.avatar.setVisible(true);
+                            unKGS.controls.avatar.setDensityAware(false);
+                        }
 						
 						// define request
 						var krequest = 'https://metakgs.org/api/archives/' + sRecipient;
@@ -795,10 +839,12 @@
 								var rank = '?';
 								var aGames = l.content.games;
 								if( aGames.length > 0 ){
-								    mainFunction2(l, rank, aGames, sRecipient, selfView, otherView,
-										sliderView,	style44, style43, style33, style53, style54,
-										talkative, rengo, avatar, inModel, iNormalizeRank, escaperView);
+								
+								
+								    mainFunction2( l, rank, aGames, sRecipient, inModel, iNormalizeRank, unKGS, 0, mainFunction2);
+										
 								}  else  {  // if( aGames.length > 0 ){
+								
 									// SCAN PREVIOUS MONTH, SAME LOGIC (mainFunction)
 									MessageToast.show("No games in last month, scanning previous");
 									console.log(l.link.prev);
@@ -813,9 +859,11 @@
              	    	  	 				var rank = '?';
              	    	  	 				var aGames = l.content.games;
              	    	  	 				if( aGames.length > 0 ){
-             	    	  	 				    mainFunction2(l, rank, aGames, sRecipient, selfView, otherView,
-													sliderView,	style44, style43, style33, style53, style54,
-													talkative, rengo, avatar, inModel, iNormalizeRank, escaperView);
+             	    	  	 				
+             	    	  	 				
+             	    	  	 				    mainFunction2( l, rank, aGames, sRecipient, inModel, iNormalizeRank, unKGS, 0, mainFunction2);
+													
+													
              	    	  	 				}  else  {  // if( aGames.length > 0 ){
 												MessageToast.show("No games in last and next-to-last month");
              	    	  	 				}	 // if( aGames.length > 0 ){
@@ -833,7 +881,6 @@
 			        }
 			    });
 			});
-
 
 
 			/*** THIS IS THE "APPLICATION" CODE ***/
