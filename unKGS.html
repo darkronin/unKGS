@@ -5,7 +5,14 @@
 		<title>un-KGS</title>
 		
 		<style>
-
+			.popoverMiddle{
+				width: 50%;
+				height:55%;
+				position:relative; 
+				margin-left: 25%;
+				margin-top: 5%;
+			}
+			
 			.devider{
 				background: #009de0;
 				width: 100%;
@@ -45,13 +52,15 @@
 				-webkit-transition:0.8s all;
 				transition:0.8s all;
 				}
+ 
+			
 		</style>
 	
 		<script 			
 			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
 			id="sap-ui-bootstrap"
 			data-sap-ui-theme="sap_bluecrystal"
-			data-sap-ui-libs="sap.m"
+			data-sap-ui-libs="sap.m,sap.ui.ux3"
 			data-sap-ui-compatVersion="edge"
 			data-sap-ui-preload="no"
 			data-sap-ui-resourceroots='{ "sap.ui.demo.wt": "./"	}' >
@@ -75,8 +84,9 @@
 
 				<App>
 					<pages>
-						<Page title="{i18n>un-KGS}" class="img1">
+						<Page id="uTitle" title="{i18n>un-KGS}" class="img1 easterEgg">
 							<content>
+	
 
 								<!-- ###################################################################### -->
 								<!--<Panel headerText="{i18n>player}" class="sapUiResponsiveMargin" width="auto"> -->
@@ -305,7 +315,7 @@
 				"sap/ui/model/json/JSONModel",
 				"sap/ui/model/resource/ResourceModel"
 			], function (Controller, MessageToast, JSONModel, ResourceModel) {
-			    "use strict";
+			    // "use strict";   // gives problem to dayharri
 			    return Controller.extend("sap.ui.demo.wt.controller", {
 
 			        onInit : function () {
@@ -332,6 +342,113 @@
 			        },
 
 					onAfterRendering : function () {
+					//$(".easterEgg")
+						$("header[id*='uTitle-intHeader']")
+							.click(function(){ 
+								// alert('Created by darkronin');
+								var popover = new sap.ui.ux3.OverlayContainer( {
+								// var popover = new sap.m.Popover("author123", {
+											openButtonVisible: false,
+
+											"customHeader" : new sap.m.Bar({
+												"contentMiddle" : [
+																   new sap.m.Label({"text":"test"}).addStyleClass("popoverTitle")
+																   ]
+											}),
+										//"showHeader" : false,
+											"placement" : "Auto"
+										}).addStyleClass("sapUiPopupWithPadding popoverMiddle");
+										
+								var oLayout1 = new sap.ui.layout.form.ResponsiveGridLayout({
+											labelSpanL: 12,
+											labelSpanM: 12,
+											labelSpanS: 12,
+											emptySpanL: 0,
+											emptySpanM: 0,
+											emptySpanS: 0,
+											columnsL: 2,
+											columnsM: 2,
+											columnsS: 2,
+											breakpointL: 800,
+											breakpointM: 400
+										});
+									var customerDetailsForm = new sap.ui.layout.form.Form({
+
+									layout: oLayout1,
+									formContainers: [
+
+									  new sap.ui.layout.form.FormContainer({
+
+										formElements: [
+											 new sap.ui.layout.form.FormElement({
+												label: new sap.m.Label({
+													text:"Author",
+													textAlign:"Center"
+												}),
+												//fields: [new sap.m.Text({
+												//	text: "12221",
+												//	textAlign:"Center"
+												//})]
+												// replacing starts
+												fields: [new sap.m.Image({
+													src: "img/20384978.jpg",
+													width: "95%"
+													
+												})]
+												// replacing ends
+											}),
+											
+											new sap.ui.layout.form.FormElement({
+													label: new sap.m.Label({
+														text:"darkronin",
+														textAlign:"Center"
+													}),
+													fields: [new sap.m.Text({
+														text: "",
+														textAlign:"Center",
+														vAlign:"Center",
+														class:"rating"
+													
+													})]
+												})
+											]
+									}),
+									 new sap.ui.layout.form.FormContainer( {
+
+											formElements: [
+												new sap.ui.layout.form.FormElement({
+													label: new sap.m.Label({
+														text:"Codeveloper",
+														textAlign:"Center"
+													}),
+													fields: [new sap.m.Image({
+													src: "img/6212224.png",
+													width: "95%"
+													
+												})]
+												}),
+												new sap.ui.layout.form.FormElement({
+													label: new sap.m.Label({
+														text:"asdk.kgs",
+														textAlign:"Center"
+													}),
+													fields: [new sap.m.Text({
+														text: "",
+														textAlign:"Center",
+														vAlign:"Center",
+														class:"rating"
+													
+													})]
+												})
+											]
+										})
+									]
+								});
+								popover.addContent(customerDetailsForm);
+								
+								// overlay.open();
+								popover.open();
+								});
 			            $(".xxcircle")
 							.mouseover(function(){$(".xxcircle").removeClass("reverse").addClass("hover");})
 							.mouseout(function(){$(".xxcircle").removeClass("hover").addClass("reverse");});
